@@ -1,0 +1,55 @@
+package aqdsystems;
+
+message Host {
+	required string hostname = 1;
+	optional string fqdn = 2;
+	optional Archetype archetype = 3;
+	optional string dns_domain = 4;
+	optional Domain domain = 5;
+	optional string status = 6;
+	optional Machine machine = 7;
+	optional string sysloc = 8;
+}
+
+message Machine {
+    optional string name = 1;
+    optional string host = 2;
+    optional string rack = 3;
+    optional Model model = 4;
+    optional string cpu = 5;
+    optional int64 memory = 6;
+    repeated Disk disk = 7;
+    repeated Interface interface = 8;
+}
+
+message Disk {
+    optional string device_name = 1;
+    optional int64 capacity = 2;
+    optional string disk_type = 3;
+}
+
+message Archetype {
+    optional string name = 1;
+    repeated string required_service = 2;
+}
+
+message Domain {
+    optional string name = 1;
+    optional string owner = 2;
+}
+
+message Model {
+    optional string name = 1;
+    optional string vendor = 2;
+}
+
+message Interface {
+    optional string device = 1;
+    optional string mac = 2;
+    optional string ip = 3;
+    optional bool bootable = 4;
+}
+
+message HostList {
+    repeated Host host = 1;
+}
