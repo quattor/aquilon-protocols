@@ -14,12 +14,17 @@ message Host {
 message Machine {
     optional string name = 1;
     optional string host = 2;
-    optional string rack = 3;
+    optional Location location = 3;
     optional Model model = 4;
     optional string cpu = 5;
     optional int64 memory = 6;
     repeated Disk disk = 7;
     repeated Interface interface = 8;
+}
+
+message Location {
+    optional string location = 1;
+    optional string location_type = 2;
 }
 
 message Disk {
