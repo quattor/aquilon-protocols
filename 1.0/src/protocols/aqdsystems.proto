@@ -23,7 +23,7 @@ message Machine {
 }
 
 message Location {
-    optional string location = 1;
+    optional string name = 1;
     optional string location_type = 2;
 }
 
