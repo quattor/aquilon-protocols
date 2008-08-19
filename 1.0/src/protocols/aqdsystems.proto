@@ -54,6 +54,7 @@ message Interface {
     optional string ip = 3;
     optional bool bootable = 4;
     optional string interface_type = 5;
+    optional int32 network_id = 6;
 }
 
 message Network {
@@ -66,6 +67,7 @@ message Network {
     optional string sysloc = 7;
     optional Location location = 8;
     repeated Host host = 9;
+    optional int32 id = 10;
 }
 
 message NetworkList {
