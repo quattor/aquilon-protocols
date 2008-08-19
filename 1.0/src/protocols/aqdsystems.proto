@@ -65,7 +65,7 @@ message Network {
     optional string side = 6;
     optional string sysloc = 7;
     optional Location location = 8;
-    repeated Interface interface = 9;
+    repeated Host host = 9;
 }
 
 message NetworkList {
