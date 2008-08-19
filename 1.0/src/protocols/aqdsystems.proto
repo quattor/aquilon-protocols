@@ -53,6 +53,7 @@ message Interface {
     optional string mac = 2;
     optional string ip = 3;
     optional bool bootable = 4;
+    optional string interface_type = 5;
 }
 
 message HostList {
