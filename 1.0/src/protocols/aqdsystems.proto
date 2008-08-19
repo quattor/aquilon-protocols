@@ -56,6 +56,22 @@ message Interface {
     optional string interface_type = 5;
 }
 
+message Network {
+    optional string name = 1;
+    optional string ip = 2;
+    optional int32 cidr = 3;
+    optional string bcast = 4;
+    optional string mask = 5;
+    optional string side = 6;
+    optional string syslog = 7;
+    optional Location location = 8;
+    repeated Interface interface = 9;
+}
+
+message NetworkList {
+    repeated Network network = 1;
+}
+
 message HostList {
     repeated Host host = 1;
 }
