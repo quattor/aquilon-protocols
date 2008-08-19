@@ -63,7 +63,7 @@ message Network {
     optional string bcast = 4;
     optional string mask = 5;
     optional string side = 6;
-    optional string syslog = 7;
+    optional string sysloc = 7;
     optional Location location = 8;
     repeated Interface interface = 9;
 }
