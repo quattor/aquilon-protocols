@@ -1,6 +1,6 @@
 package aqdnetworks;
-
 import "aqdsystems.proto";
+import "aqdlocations.proto";
 
 message Network {
     optional string name = 1;
@@ -9,8 +9,10 @@ message Network {
     optional string bcast = 4;
     optional string mask = 5;
     optional string side = 6;
-    optional Location location = 7;
-    repeated Interface interface = 8;
+    optional string sysloc = 7;
+    optional aqdlocations.Location location = 8;
+    repeated aqdsystems.Host hosts = 9;
+    optional int32 id = 10;
 }
 
 message NetworkList {

@@ -1,4 +1,5 @@
 package aqdsystems;
+import "aqdlocations.proto";
 
 message Host {
 	required string hostname = 1;
@@ -14,17 +15,12 @@ message Host {
 message Machine {
     optional string name = 1;
     optional string host = 2;
-    optional Location location = 3;
+    optional aqdlocations.Location location = 3;
     optional Model model = 4;
     optional string cpu = 5;
     optional int64 memory = 6;
-    repeated Disk disk = 7;
-    repeated Interface interface = 8;
-}
-
-message Location {
-    optional string name = 1;
-    optional string location_type = 2;
+    repeated Disk disks = 7;
+    repeated Interface interfaces = 8;
 }
 
 message Disk {
@@ -35,7 +31,7 @@ message Disk {
 
 message Archetype {
     optional string name = 1;
-    repeated string required_service = 2;
+    repeated string required_services = 2;
 }
 
 message Domain {
@@ -57,23 +53,6 @@ message Interface {
     optional int32 network_id = 6;
 }
 
-message Network {
-    optional string name = 1;
-    optional string ip = 2;
-    optional int32 cidr = 3;
-    optional string bcast = 4;
-    optional string mask = 5;
-    optional string side = 6;
-    optional string sysloc = 7;
-    optional Location location = 8;
-    repeated Host host = 9;
-    optional int32 id = 10;
-}
-
-message NetworkList {
-    repeated Network network = 1;
-}
-
 message HostList {
-    repeated Host host = 1;
+    repeated Host hosts = 1;
 }
