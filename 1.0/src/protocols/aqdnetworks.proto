@@ -16,5 +16,5 @@ message Network {
 }
 
 message NetworkList {
-    repeated Network network = 1;
+    repeated Network networks = 1;
 }
