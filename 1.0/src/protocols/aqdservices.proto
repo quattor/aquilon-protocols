@@ -4,7 +4,7 @@ import "aqdsystems.proto";
 message Service {
     optional string name = 1;
     optional string template = 2;
-    repeated ServiceInstance serviceinst = 3;
+    repeated ServiceInstance serviceinstances = 3;
 }
 
 message ServiceInstance {
@@ -14,3 +14,10 @@ message ServiceInstance {
     repeated aqdsystems.Host clients = 4;
 }
 
+message ServiceList {
+    repeated Service services = 1;
+}
+
+message ServiceInstanceList {
+    repeated ServiceList servicelists = 1;
+}
