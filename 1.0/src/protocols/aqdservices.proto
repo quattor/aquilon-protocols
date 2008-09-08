@@ -16,7 +16,7 @@ message ServiceInstance {
 }
 
 message ServiceMap {
-    optional aqdlocations.Location = 1;
+    optional aqdlocations.Location location = 1;
     optional Service service = 2;
 }
 
