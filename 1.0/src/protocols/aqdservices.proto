@@ -1,5 +1,6 @@
 package aqdservices;
 import "aqdsystems.proto";
+import "aqdlocations.proto";
 
 message Service {
     optional string name = 1;
@@ -14,10 +15,19 @@ message ServiceInstance {
     repeated aqdsystems.Host clients = 4;
 }
 
+message ServiceMap {
+    optional aqdlocations.Location = 1;
+    optional Service service = 2;
+}
+
 message ServiceList {
     repeated Service services = 1;
 }
 
 message ServiceInstanceList {
     repeated ServiceList servicelists = 1;
+}
+
+message ServiceMapList {
+    repeated ServiceMap servicemaps = 1;
 }
