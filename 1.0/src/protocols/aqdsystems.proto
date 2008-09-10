@@ -51,6 +51,7 @@ message Interface {
     optional bool bootable = 4;
     optional string interface_type = 5;
     optional int32 network_id = 6;
+    optional string fqdn = 7;
 }
 
 message HostList {
