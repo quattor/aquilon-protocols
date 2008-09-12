@@ -10,6 +10,7 @@ message Host {
 	optional string status = 6;
 	optional Machine machine = 7;
 	optional string sysloc = 8;
+	optional string type = 9;
 }
 
 message Machine {
