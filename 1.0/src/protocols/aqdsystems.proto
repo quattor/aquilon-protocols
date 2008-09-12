@@ -4,13 +4,15 @@ import "aqdlocations.proto";
 message Host {
 	required string hostname = 1;
 	optional string fqdn = 2;
-	optional Archetype archetype = 3;
-	optional string dns_domain = 4;
-	optional Domain domain = 5;
-	optional string status = 6;
-	optional Machine machine = 7;
-	optional string sysloc = 8;
-	optional string type = 9;
+	optional string mac = 3;
+	optional string ip = 4;
+	optional Archetype archetype = 5;
+	optional string dns_domain = 6;
+	optional Domain domain = 7;
+	optional string status = 8;
+	optional Machine machine = 9;
+	optional string sysloc = 10;
+	optional string type = 11;
 }
 
 message Machine {
