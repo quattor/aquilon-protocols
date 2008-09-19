@@ -7,7 +7,7 @@ message Network {
     optional string ip = 2;
     optional int32 cidr = 3;
     optional string bcast = 4;
-    optional string mask = 5;
+    optional string netmask = 5;
     optional string side = 6;
     optional string sysloc = 7;
     optional aqdlocations.Location location = 8;
