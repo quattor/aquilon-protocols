@@ -12,7 +12,8 @@ message Network {
     optional string sysloc = 7;
     optional aqdlocations.Location location = 8;
     repeated aqdsystems.Host hosts = 9;
-    optional int32 id = 10;
+    optional int33 id = 10;
+    optional string type = 11;
 }
 
 message NetworkList {
