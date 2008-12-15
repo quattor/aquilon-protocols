@@ -1,0 +1,9 @@
+package windhcp;
+import "aqdlocations.proto";
+
+message WinDhcp {
+    optional aqdlocations.Location location = 1;
+    repeated string addns = 2;
+    repeated string wins = 3;
+    optional int32 lastupdate = 4;
+}
