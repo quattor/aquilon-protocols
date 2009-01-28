@@ -3,8 +3,9 @@ import "aqdlocations.proto";
 
 message WinDhcp {
     optional aqdlocations.Location location = 1;
-    repeated string addns = 2;
-    repeated string wins = 3;
+    optional string side = 2;
+    repeated string addns = 3;
+    repeated string wins = 4;
 }
 
 message WinDhcpList {
