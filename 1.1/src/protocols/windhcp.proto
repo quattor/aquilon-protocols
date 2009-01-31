@@ -9,5 +9,5 @@ message WinDhcp {
 }
 
 message WinDhcpList {
-    repeated WinDhcpList windhcp = 1;
+    repeated WinDhcp windhcp = 1;
 }
