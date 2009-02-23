@@ -22,15 +22,20 @@ endif
 
 BUILDDIR = /var/tmp/$(USER).build/$(METAPROJ)/$(PROJECT)/$(RELEASE)
 INSTALLDIR = /ms/dev/$(METAPROJ)/$(PROJECT)/$(RELEASE)/install
-PROTODIR = ${INSTALLDIR}/common/protocols
-PYTHONDIR = ${INSTALLDIR}/common/lib/python
+DEV_PREFIX=$(INSTALLDIR)/common
+DEV_EXEC_PREFIX=$(INSTALLDIR)/.exec/$(ID_EXEC)
+
+PROTODIR = ${DEV_PREFIX}/protocols
+PYTHONDIR =  ${DEV_PREFIX}/lib/python
+CPPDIR = ${DEV_PREFIX}/lib/cpp
 PROTOC = /ms/dist/aquilon/PROJ/protoc/prod/bin/protoc
 
 install:
 	mkdir -p ${PROTODIR}
 	mkdir -p ${PYTHONDIR}
-	rsync --delete --exclude RCS --exclude Makefile --exclude .needed -a protocols/* ${PROTODIR}/
-	(cd protocols; find . -name \*.proto -exec ${PROTOC} --python_out=${PYTHONDIR} {} \;)
+	mkdir -p ${CPPDIR}
+	rsync --delete --exclude RCS --exclude Makefile --exclude .needed -a * ${PROTODIR}/
+	find . -name \*.proto -exec ${PROTOC} --python_out=${PYTHONDIR} --cpp_out=${CPPDIR} {} \;
 	find ../install/common/. -name '.__afs*' -print0|perl -0 -lne unlink
 			
 turnover: 

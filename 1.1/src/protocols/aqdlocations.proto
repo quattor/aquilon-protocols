@@ -1,7 +1,0 @@
-package aqdlocations;
-
-message Location {
-    optional string name = 1;
-    optional string location_type = 2;
-}
-
