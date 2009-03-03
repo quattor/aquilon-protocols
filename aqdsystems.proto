@@ -13,6 +13,7 @@ message Host {
 	optional Machine machine = 9;
 	optional string sysloc = 10;
 	optional string type = 11;
+	optional Personality personality = 12;
 }
 
 message Machine {
@@ -35,6 +36,10 @@ message Disk {
 message Archetype {
     optional string name = 1;
     repeated string required_services = 2;
+}
+
+message Personality {
+    optional string name = 1;
 }
 
 message Domain {
