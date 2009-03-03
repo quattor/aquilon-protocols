@@ -1,0 +1,9 @@
+package aqddnsdomains;
+
+message DNSDomain {
+    optional string name = 1;
+}
+
+message DNSDomainList {
+    repeated DNSDomain dns_domains = 1;
+}
