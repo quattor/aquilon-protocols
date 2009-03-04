@@ -34,9 +34,10 @@ install:
 	mkdir -p ${PROTODIR}
 	mkdir -p ${PYTHONDIR}
 	mkdir -p ${CPPDIR}
-	rsync --delete --exclude RCS --exclude Makefile --exclude .needed -a * ${PROTODIR}/
+	rsync -a *.proto ${PROTODIR}/
 	find . -name \*.proto -exec ${PROTOC} --python_out=${PYTHONDIR} --cpp_out=${CPPDIR} {} \;
-	find ../install/common/. -name '.__afs*' -print0|perl -0 -lne unlink
+	find ${PYTHONDIR} -name '*.py' -exec ./compile_for_dist.py {} \;
+	find ${INSTALLDIR}/common/. -name '.__afs*' -print0|perl -0 -lne unlink
 			
 turnover: 
 	vms turnover release $(METAPROJ) $(PROJECT) $(RELEASE)
