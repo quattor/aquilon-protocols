@@ -15,7 +15,7 @@ message Network {
     optional int32 id = 10;
     optional string type = 11;
     optional bool discoverable = 12;
-    optional bool discovered = 13
+    optional bool discovered = 13;
 }
 
 message NetworkList {
