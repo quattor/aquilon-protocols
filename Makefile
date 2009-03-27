@@ -40,13 +40,13 @@ install:
 	find ${INSTALLDIR}/common/. -name '.__afs*' -print0|perl -0 -lne unlink
 			
 turnover: 
-	vms turnover release $(METAPROJ) $(PROJECT) $(RELEASE)
+	vms turnover release $(METAPROJ) $(PROJECT) $(RELEASE) -- -nolock
 
 dist: turnover
-	vms dist $(METAPROJ) $(PROJECT) $(RELEASE) -- -global
+	vms dist $(METAPROJ) $(PROJECT) $(RELEASE) -- -global -comment cmrs=qa
 
 distqa: turnover
-	vms dist $(METAPROJ) $(PROJECT) $(RELEASE) -- -cells q.ln,q.ny,q.hk,q.tk
+	vms dist $(METAPROJ) $(PROJECT) $(RELEASE) -- -cells q.ln,q.ny,q.hk,q.tk -comment cmrs=qa
 
 unlock: 
 	vms unlock release $(METAPROJ) $(PROJECT) $(RELEASE)

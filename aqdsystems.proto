@@ -40,6 +40,8 @@ message Archetype {
 
 message Personality {
     optional string name = 1;
+    optional Archetype archetype = 2;
+    repeated string required_services = 3;
 }
 
 message Domain {
