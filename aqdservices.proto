@@ -18,6 +18,7 @@ message ServiceInstance {
 message ServiceMap {
     optional aqdlocations.Location location = 1;
     optional Service service = 2;
+    optional aqdsystems.Personality personality = 3;
 }
 
 message ServiceList {
