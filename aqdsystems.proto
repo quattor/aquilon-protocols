@@ -42,6 +42,7 @@ message Personality {
     optional string name = 1;
     optional Archetype archetype = 2;
     repeated string required_services = 3;
+    optional sint32 threshold = 4 [default = -1];
 }
 
 message Domain {
@@ -67,3 +68,8 @@ message Interface {
 message HostList {
     repeated Host hosts = 1;
 }
+
+message PersonalityList {
+    repeated Personality personalities = 1;
+}
+
