@@ -27,7 +27,7 @@ DEV_EXEC_PREFIX=$(INSTALLDIR)/.exec/$(ID_EXEC)
 
 PROTODIR = ${DEV_PREFIX}/protocols
 PYTHONDIR =  ${DEV_PREFIX}/lib/python
-PERLDIR = ${DEV_PREFIX}/lib/perl
+PERLDIR = ${DEV_PREFIX}/lib/perl5
 CPPDIR = ${DEV_PREFIX}/lib/cpp
 PROTOC = /ms/dist/fsf/PROJ/protoc/2.3.0/bin/protoc
 
