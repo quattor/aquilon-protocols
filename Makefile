@@ -28,7 +28,7 @@ DEV_EXEC_PREFIX=$(INSTALLDIR)/.exec/$(ID_EXEC)
 PROTODIR = ${DEV_PREFIX}/protocols
 PYTHONDIR =  ${DEV_PREFIX}/lib/python
 CPPDIR = ${DEV_PREFIX}/lib/cpp
-PROTOC = /ms/dist/aquilon/PROJ/protoc/prod/bin/protoc
+PROTOC = /ms/dist/fsf/PROJ/protoc/2.3.0/bin/protoc
 
 install:
 	mkdir -p ${PROTODIR}
