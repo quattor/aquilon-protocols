@@ -3,5 +3,11 @@ package aqdlocations;
 message Location {
     optional string name = 1;
     optional string location_type = 2;
+    optional string fullname = 3;
+    repeated Location parents = 4;
+}
+
+message LocationList {
+    repeated Location locations = 1;
 }
 
