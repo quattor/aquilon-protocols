@@ -5,6 +5,7 @@ message Location {
     optional string location_type = 2;
     optional string fullname = 3;
     repeated Location parents = 4;
+    optional string timezone = 5;
 }
 
 message LocationList {
