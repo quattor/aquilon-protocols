@@ -2,16 +2,17 @@ package aqdlocations;
 
 message LocationIdentity {
     optional string name = 1;
-    optional string type = 2;
+    optional string location_type = 2;
 }
 
 message Location {
-    required LocationIdentity id = 1;
-    optional string fullname = 2;
-    optional string timezone = 3;
-    optional string row = 4;
-    optional string col = 5;
-    repeated LocationIdentity parents = 6;
+    required string name = 1;
+    required string location_type = 2;
+    optional string fullname = 3;
+    optional string timezone = 4;
+    optional string row = 5;
+    optional string col = 6;
+    repeated LocationIdentity parents = 7;
 }
 
 message LocationList {
