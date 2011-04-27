@@ -14,6 +14,7 @@ message Host {
 	optional string sysloc = 10;
 	optional string type = 11;
 	optional Personality personality = 12;
+	optional OperatingSystem operating_system = 13;
 }
 
 message Machine {
@@ -65,6 +66,12 @@ message Interface {
     optional string fqdn = 7;
 }
 
+message OperatingSystem {
+    optional Archetype archetype = 1;
+    optional string name = 2;
+    optional string version = 3;
+}
+
 message HostList {
     repeated Host hosts = 1;
 }
@@ -73,3 +80,6 @@ message PersonalityList {
     repeated Personality personalities = 1;
 }
 
+message OperatingSystemList {
+    repeated OperatingSystem operating_systems = 1;
+}
