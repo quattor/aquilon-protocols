@@ -6,7 +6,7 @@ message Host {
 	optional string fqdn = 2;
 	optional string mac = 3;
 	optional string ip = 4;
-	optional Archetype archetype = 5;
+	optional Archetype archetype = 5; // deprecated: look in personality
 	optional string dns_domain = 6;
 	optional Domain domain = 7;
 	optional string status = 8;
@@ -15,6 +15,8 @@ message Host {
 	optional string type = 11;
 	optional Personality personality = 12;
 	optional OperatingSystem operating_system = 13;
+        optional string cluster = 14;
+        optional ResourceList resources = 15;
 }
 
 message Machine {
@@ -36,14 +38,14 @@ message Disk {
 
 message Archetype {
     optional string name = 1;
-    repeated string required_services = 2;
+    optional ServiceList required_services = 3;
 }
 
 message Personality {
     optional string name = 1;
     optional Archetype archetype = 2;
-    repeated string required_services = 3;
     optional sint32 threshold = 4 [default = -1];
+    optional ServiceList required_services = 5;
 }
 
 message Domain {
@@ -82,4 +84,85 @@ message PersonalityList {
 
 message OperatingSystemList {
     repeated OperatingSystem operating_systems = 1;
+}
+
+message Cluster {
+    required string name = 1;
+    required string type = 2;
+    optional string status = 3;
+    optional Personality personality = 4;
+    optional int32 threshold = 5 [default = -1];
+    optional bool threshold_is_percent = 6;
+    optional int32 maint_threshold = 7 [default = -1];
+    optional bool maint_threshold_is_percent = 8;
+    optional Domain domain = 9;
+    optional HostList hostlist = 10;
+    optional ResourceList resources = 11;
+    optional ServiceList aligned_services = 12;
+    optional PersonalityList allowed_personalities = 13;
+    optional string vm_to_host_ratio = 14;
+    optional int32 max_vm_count = 15;
+    optional ClusterLimits limits = 16;
+    optional ClusterUsage usages = 17;
+}
+
+message ClusterLimits {
+    repeated KeyIntPair limit = 1;
+}
+
+message ClusterUsage {
+    repeated KeyIntPair usage = 1;
+}
+
+message KeyIntPair {
+    required string name = 1;
+    required sint64 value = 2;
+    optional bool override = 3 [default = false];
+}
+
+message ServiceList {
+    repeated NamedServiceInstance serviceinstance = 1;
+}
+
+message NamedServiceInstance {
+    required string service = 1;
+    optional string instance = 2;
+}
+
+message ClusterList {
+    repeated Cluster clusters = 1;
+}
+
+message Resource {
+    required string name = 1;
+    required string type = 2;
+    optional Filesystem fsdata = 3;
+    optional Application appdata = 4;
+    optional Intervention ivdata = 5;
+}
+
+message ResourceList {
+    repeated Resource resource = 1;
+}
+
+message Filesystem {
+    optional string fstype = 1;
+    optional string mountpoint = 2;
+    optional bool mount = 3;
+    optional string blockdevice = 4;
+    optional string opts = 5;
+    optional int32 freq = 6;
+    optional int32 passno = 7;
+}
+
+message Application {
+    optional int32 eonid = 1;
+}
+
+message Intervention {
+    optional int64 expiry = 1;
+    optional string justification = 2;
+    optional string users = 3;
+    optional string groups = 4;
+    optional string disabled = 5;
 }
