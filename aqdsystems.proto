@@ -16,7 +16,7 @@ message Host {
 	optional Personality personality = 12;
 	optional OperatingSystem operating_system = 13;
         optional string cluster = 14;
-        optional ResourceList resources = 15;
+        repeated Resource resources = 15;
 }
 
 message Machine {
@@ -38,14 +38,14 @@ message Disk {
 
 message Archetype {
     optional string name = 1;
-    optional ServiceList required_services = 3;
+    repeated NamedServiceInstance required_services = 3;
 }
 
 message Personality {
     optional string name = 1;
     optional Archetype archetype = 2;
     optional sint32 threshold = 4 [default = -1];
-    optional ServiceList required_services = 5;
+    repeated NamedServiceInstance required_services = 5;
 }
 
 message Domain {
@@ -96,32 +96,21 @@ message Cluster {
     optional int32 maint_threshold = 7 [default = -1];
     optional bool maint_threshold_is_percent = 8;
     optional Domain domain = 9;
-    optional HostList hostlist = 10;
-    optional ResourceList resources = 11;
-    optional ServiceList aligned_services = 12;
-    optional PersonalityList allowed_personalities = 13;
+    repeated Host hosts = 10;
+    repeated Resource resources = 11;
+    repeated NamedServiceInstance aligned_services = 12;
+    repeated Personality allowed_personalities = 13;
     optional string vm_to_host_ratio = 14;
     optional int32 max_vm_count = 15;
-    optional ClusterLimits limits = 16;
-    optional ClusterUsage usages = 17;
+    repeated KeyIntPair limits = 16;
+    repeated KeyIntPair usage = 17;
 }
 
-message ClusterLimits {
-    repeated KeyIntPair limit = 1;
-}
-
-message ClusterUsage {
-    repeated KeyIntPair usage = 1;
-}
 
 message KeyIntPair {
     required string name = 1;
     required sint64 value = 2;
     optional bool override = 3 [default = false];
-}
-
-message ServiceList {
-    repeated NamedServiceInstance serviceinstance = 1;
 }
 
 message NamedServiceInstance {
@@ -142,7 +131,7 @@ message Resource {
 }
 
 message ResourceList {
-    repeated Resource resource = 1;
+    repeated Resource resources = 1;
 }
 
 message Filesystem {
