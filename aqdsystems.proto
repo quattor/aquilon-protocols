@@ -88,7 +88,6 @@ message OperatingSystemList {
 
 message Cluster {
     required string name = 1;
-    required string type = 2;
     optional string status = 3;
     optional Personality personality = 4;
     optional int32 threshold = 5 [default = -1];
