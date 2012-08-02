@@ -1,0 +1,11 @@
+package aqdparameters;
+import "aqdsystems.proto";
+
+message Parameter {
+    required string path = 4;
+    required string value = 5;
+}
+
+message ParameterList {
+    repeated Parameter parameters = 4;
+}
