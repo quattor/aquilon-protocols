@@ -103,6 +103,7 @@ message Cluster {
     optional int32 max_vm_count = 15;
     repeated KeyIntPair limits = 16;
     repeated KeyIntPair usage = 17;
+    optional int32 max_members = 18;
 }
 
 
