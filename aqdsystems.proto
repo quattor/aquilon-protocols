@@ -51,6 +51,7 @@ message Personality {
     optional string comments = 8;
     optional bool config_override = 9;
     optional bool cluster_required = 10;
+    optional string host_environment = 11;
 }
 
 message Domain {
