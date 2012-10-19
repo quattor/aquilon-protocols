@@ -1,0 +1,17 @@
+package aqdparamdefinitions;
+
+import "aqdsystems.proto";
+
+message ParamDefinition {
+    required string path = 1;
+    required string value_type = 2;
+    optional string default = 3;
+    optional string description = 4;
+    optional string template = 5;
+    optional bool is_required = 6 [default = false];
+    optional bool rebuild_required = 7 [default = false];
+}
+
+message ParamDefinitionList {
+    repeated ParamDefinition param_definitions = 1;
+}
