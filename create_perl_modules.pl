@@ -6,7 +6,7 @@ use strict;
 use MSDW::Version
   'Class-Accessor'     => '0.31', 
   'Parse-RecDescent'   => '1.963',
-  'aquilon/Google-ProtocolBuffers' => '0.08',
+  'Google-ProtocolBuffers' => '0.08',
 ;
 use Google::ProtocolBuffers;
 use Getopt::Long;
