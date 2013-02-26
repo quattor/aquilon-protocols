@@ -2,18 +2,59 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>aquilon-protocols</artifactId>
+  <artifactId>protobuf-aquilon</artifactId>
   <packaging>pom</packaging>
-  <name>aquilon-protocols</name>
+  <name>protobuf-aquilon</name>
   <groupId>org.quattor.aquilon</groupId>
-  <version>0.1</version>
-  <description>Quattor Data Warehouse</description>
+  <version>1.0.0</version>
+  <description>Protocol buffer definitions for Aquilon</description>
 
-  <!--   <parent> -->
-  <!--     <groupId>org.quattor.qdw</groupId> -->
-  <!--     <artifactId>qdw-parent</artifactId> -->
-  <!--     <version>0.9-SNAPSHOT</version> -->
-  <!--   </parent> -->
+  <licenses>
+    <license>
+      <name>Apache 2 License</name>
+      <url>http://www.opensource.org/licenses/apache2.0</url>
+      <comments>Copyright (c) Responsible Organization</comments>
+    </license>
+  </licenses>
+
+  <repositories>
+    <repository>
+      <id>quattor-releases</id>
+      <url>http://lapp-repo01.in2p3.fr:8081/nexus/content/repositories/releases/</url>
+    </repository>
+  </repositories>
+
+  <developers>
+    <developer>
+      <name>Ben Jones</name>
+      <email>ben.jones@morganstanley.com</email>
+    </developer>
+    <developer>
+      <name>Zoltan Sebestyen</name>
+      <email>Zoltan.Sebestyen@morganstanley.com</email>
+    </developer>
+    <developer>
+      <name>Nick Williams</name>
+      <email>Nick.Williams@morganstanley.com
+      </email>
+    </developer>
+    <developer>
+      <name>Priya Joshi</name>
+      <email>priyaj@ms.com
+      </email>
+    </developer>
+    <developer>
+      <name>Scott D'Aquila</name>
+      <email>daqscott@ms.com
+      </email>
+    </developer>
+    <developer>
+      <name>Wesley Hertlein</name>
+      <email>wesleyhe@ms.com
+      </email>
+    </developer>
+
+  </developers>
 
   <build>
 
