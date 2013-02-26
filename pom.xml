@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>aquilon-protocols</artifactId>
+  <packaging>pom</packaging>
+  <name>aquilon-protocols</name>
+  <groupId>org.quattor.aquilon</groupId>
+  <version>0.1</version>
+  <description>Quattor Data Warehouse</description>
+
+  <!--   <parent> -->
+  <!--     <groupId>org.quattor.qdw</groupId> -->
+  <!--     <artifactId>qdw-parent</artifactId> -->
+  <!--     <version>0.9-SNAPSHOT</version> -->
+  <!--   </parent> -->
+
+  <build>
+
+    <plugins>
+      <plugin>
+	<artifactId>maven-antrun-plugin</artifactId>
+	<executions>
+	  <execution>
+	    <id>generate-sources</id>
+	    <phase>generate-sources</phase>
+	    <configuration>
+              <tasks>
+		<mkdir dir="target/protobuf"/>
+              </tasks>
+	    </configuration>
+	    <goals>
+              <goal>run</goal>
+	    </goals>
+	  </execution>
+	</executions>
+      </plugin>
+      <plugin>
+	<groupId>org.codehaus.mojo</groupId>
+	<artifactId>exec-maven-plugin</artifactId>
+
+	<executions>
+	  <execution>
+	    <id>protobuf-compile</id>
+	    <phase>compile</phase>
+	    <goals>
+	      <goal>exec</goal>
+	    </goals>
+	    <configuration>
+	      <executable>protoc</executable>
+	      <workingDirectory>${basedir}</workingDirectory>
+	      <arguments>
+		<argument>-I</argument>
+		<argument>src/main/protobuf</argument>
+		<argument>--python_out=${project.build.directory}/protobuf</argument>
+		<argument>src/main/protobuf/aqdaudit.proto</argument>
+		<argument>src/main/protobuf/aqdsystems.proto</argument>
+		<argument>src/main/protobuf/aqdservices.proto</argument>
+		<argument>src/main/protobuf/aqdnetworks.proto</argument>
+		<argument>src/main/protobuf/aqdlocations.proto</argument>
+		<argument>src/main/protobuf/windhcp.proto</argument>
+		<argument>src/main/protobuf/aqdparamdefinitions.proto</argument>
+		<argument>src/main/protobuf/aqddnsdomains.proto</argument>
+		<argument>src/main/protobuf/aqdparameters.proto</argument>
+
+	      </arguments>
+	    </configuration>
+	  </execution>
+	</executions>
+
+      </plugin>
+
+    </plugins>
+
+  </build>
+
+</project>
