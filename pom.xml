@@ -24,6 +24,11 @@
     </repository>
   </repositories>
 
+  <properties>
+    <python.version>2.6</python.version>
+    <python.site.lib>/usr/lib/python${python.version}/site-packages</python.site.lib>
+  </properties>
+
   <developers>
     <developer>
       <name>Ben Jones</name>
@@ -166,7 +171,7 @@
               <mappings>
 
 		<mapping>
-		  <directory>/usr/lib/python-2.6/site_packages/aquilon/protocols</directory>
+		  <directory>${python.site.lib}/aquilon/protocols</directory>
 		  <username>root</username>
 		  <groupname>root</groupname>
 		  <directoryIncluded>false</directoryIncluded>
