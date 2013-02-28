@@ -67,7 +67,7 @@
 	    <phase>generate-sources</phase>
 	    <configuration>
               <tasks>
-		<mkdir dir="target/protobuf"/>
+		<mkdir dir="target/python"/>
               </tasks>
 	    </configuration>
 	    <goals>
@@ -75,6 +75,34 @@
 	    </goals>
 	  </execution>
 	</executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+
+        <executions>
+              <execution>
+                <id>filter-protobuf-sources</id>
+                <phase>process-sources</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                  <encoding>UTF-8</encoding>
+                  <delimiters>
+                    <delimiter>${*}</delimiter>
+                  </delimiters>
+                  <outputDirectory>${project.build.directory}/protobuf/</outputDirectory>
+                  <resources>
+                    <resource>
+                      <directory>src/main/protobuf</directory>
+                      <filtering>true</filtering>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+	    </executions>
       </plugin>
       <plugin>
 	<groupId>org.codehaus.mojo</groupId>
@@ -92,17 +120,17 @@
 	      <workingDirectory>${basedir}</workingDirectory>
 	      <arguments>
 		<argument>-I</argument>
-		<argument>src/main/protobuf</argument>
-		<argument>--python_out=${project.build.directory}/protobuf</argument>
-		<argument>src/main/protobuf/aqdaudit.proto</argument>
-		<argument>src/main/protobuf/aqdsystems.proto</argument>
-		<argument>src/main/protobuf/aqdservices.proto</argument>
-		<argument>src/main/protobuf/aqdnetworks.proto</argument>
-		<argument>src/main/protobuf/aqdlocations.proto</argument>
-		<argument>src/main/protobuf/windhcp.proto</argument>
-		<argument>src/main/protobuf/aqdparamdefinitions.proto</argument>
-		<argument>src/main/protobuf/aqddnsdomains.proto</argument>
-		<argument>src/main/protobuf/aqdparameters.proto</argument>
+		<argument>${project.build.directory}/protobuf</argument>
+		<argument>--python_out=${project.build.directory}/python</argument>
+		<argument>${project.build.directory}/protobuf/aqdaudit.proto</argument>
+		<argument>${project.build.directory}/protobuf/aqdsystems.proto</argument>
+		<argument>${project.build.directory}/protobuf/aqdservices.proto</argument>
+		<argument>${project.build.directory}/protobuf/aqdnetworks.proto</argument>
+		<argument>${project.build.directory}/protobuf/aqdlocations.proto</argument>
+		<argument>${project.build.directory}/protobuf/windhcp.proto</argument>
+		<argument>${project.build.directory}/protobuf/aqdparamdefinitions.proto</argument>
+		<argument>${project.build.directory}/protobuf/aqddnsdomains.proto</argument>
+		<argument>${project.build.directory}/protobuf/aqdparameters.proto</argument>
 
 	      </arguments>
 	    </configuration>
@@ -138,17 +166,28 @@
               <mappings>
 
 		<mapping>
-		  <directory>/usr/lib/python-2.6/site_packages/protobuf</directory>
+		  <directory>/usr/lib/python-2.6/site_packages/aquilon/protocols</directory>
 		  <username>root</username>
 		  <groupname>root</groupname>
 		  <directoryIncluded>false</directoryIncluded>
 		  <sources>
                     <source>
-                      <location>target/protobuf</location>
+                      <location>target/python</location>
                     </source>
 		  </sources>
 		</mapping>
 
+		<mapping>
+		  <directory>/usr/share/aquilon/protocols</directory>
+		  <username>root</username>
+		  <groupname>root</groupname>
+		  <directoryIncluded>false</directoryIncluded>
+		  <sources>
+		    <source>
+		      <location>target/protobuf</location>
+		    </source>
+		  </sources>
+		</mapping>
               </mappings>
             </configuration>
 	  </execution>
