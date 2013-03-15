@@ -53,6 +53,10 @@ message Personality {
     optional bool config_override = 9;
     optional bool cluster_required = 10;
     optional string host_environment = 11;
+    optional int32 maint_threshold = 12 [default = -1];
+    optional string vmhost_capacity_function = 13;
+    optional double vmhost_overcommit_memory = 14;
+
 }
 
 message Domain {
