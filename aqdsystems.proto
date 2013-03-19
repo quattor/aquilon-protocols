@@ -135,10 +135,20 @@ message Resource {
     optional Filesystem fsdata = 3;
     optional Application appdata = 4;
     optional Intervention ivdata = 5;
+    optional ServiceAddress service_address = 6;
+    optional Hostlink hostlink = 7;
+    optional Share share = 8;
+    optional RebootSchedule reboot_schedule = 9;
+    optional ResourceGroup resourcegroup = 10;
 }
 
 message ResourceList {
     repeated Resource resources = 1;
+}
+
+message ResourceGroup {
+    optional required_type = 2;
+    repeated Resource resources = 3;
 }
 
 message Filesystem {
@@ -162,6 +172,30 @@ message Intervention {
     optional string groups = 4;
     optional string disabled = 5;
     optional int64 start = 6;
+}
+
+message ServiceAddress {
+    required string ip = 1;
+    repeated string interfaces = 2;
+}
+
+message Hostlink {
+    required string target = 1;
+    required string owner_user = 2;
+    optional string owner_group = 3;
+}
+
+message Share {
+    optional string server = 1;
+    optional string mount = 2;
+    optional int32 disk_count = 3;
+    optional int32 machine_count = 4;
+}
+
+message RebootSchedule {
+    optional string time = 1;
+    optional string day = 2;
+    optional string week = 3;
 }
 
 message Feature {
