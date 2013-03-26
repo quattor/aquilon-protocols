@@ -153,8 +153,8 @@ message ResourceList {
 }
 
 message ResourceGroup {
-    optional required_type = 2;
-    repeated Resource resources = 3;
+    optional string required_type = 1;
+    repeated Resource resources = 2;
 }
 
 message Filesystem {
