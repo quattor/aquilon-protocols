@@ -18,6 +18,8 @@ message Host {
         optional string cluster = 14;
         repeated Resource resources = 15;
 	optional int32 owner_eonid = 16;
+	repeated NamedServiceInstance services_used = 17;
+	repeated NamedServiceInstance services_provided = 18;
 }
 
 message Machine {
