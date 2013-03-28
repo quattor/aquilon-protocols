@@ -182,7 +182,8 @@ message Intervention {
 
 message ServiceAddress {
     required string ip = 1;
-    repeated string interfaces = 2;
+    required string fqdn = 2;
+    repeated string interfaces = 3;
 }
 
 message Hostlink {
