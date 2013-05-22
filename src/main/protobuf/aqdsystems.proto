@@ -17,6 +17,7 @@ message Host {
 	optional OperatingSystem operating_system = 13;
         optional string cluster = 14;
         repeated Resource resources = 15;
+	optional int32 owner_eonid = 16;
 }
 
 message Machine {
