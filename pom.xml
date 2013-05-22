@@ -1,0 +1,219 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>protobuf-aquilon</artifactId>
+  <packaging>pom</packaging>
+  <name>protobuf-aquilon</name>
+  <groupId>org.quattor.aquilon</groupId>
+  <version>1.0.0</version>
+  <description>Protocol buffer definitions for Aquilon</description>
+
+  <licenses>
+    <license>
+      <name>Apache 2 License</name>
+      <url>http://www.opensource.org/licenses/apache2.0</url>
+      <comments>Copyright (c) Responsible Organization</comments>
+    </license>
+  </licenses>
+
+  <repositories>
+    <repository>
+      <id>quattor-releases</id>
+      <url>http://lapp-repo01.in2p3.fr:8081/nexus/content/repositories/releases/</url>
+    </repository>
+  </repositories>
+
+  <properties>
+    <python.version>2.6</python.version>
+    <python.site.lib>/usr/lib/python${python.version}/site-packages</python.site.lib>
+  </properties>
+
+  <developers>
+    <developer>
+      <name>Ben Jones</name>
+      <email>ben.jones@morganstanley.com</email>
+    </developer>
+    <developer>
+      <name>Zoltan Sebestyen</name>
+      <email>Zoltan.Sebestyen@morganstanley.com</email>
+    </developer>
+    <developer>
+      <name>Nick Williams</name>
+      <email>Nick.Williams@morganstanley.com</email>
+    </developer>
+    <developer>
+      <name>Priya Joshi</name>
+      <email>priyaj@ms.com
+      </email>
+    </developer>
+    <developer>
+      <name>Scott D'Aquila</name>
+      <email>daqscott@ms.com
+      </email>
+    </developer>
+    <developer>
+      <name>Wesley Hertlein</name>
+      <email>wesleyhe@ms.com
+      </email>
+    </developer>
+
+  </developers>
+
+  <build>
+
+    <plugins>
+      <plugin>
+	<artifactId>maven-antrun-plugin</artifactId>
+	<executions>
+	  <execution>
+	    <id>generate-sources</id>
+	    <phase>generate-sources</phase>
+	    <configuration>
+              <tasks>
+		<mkdir dir="${project.build.directory}/python"/>
+		<mkdir dir="${project.build.directory}/cpp"/>
+              </tasks>
+	    </configuration>
+	    <goals>
+              <goal>run</goal>
+	    </goals>
+	  </execution>
+	</executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+
+        <executions>
+              <execution>
+                <id>filter-protobuf-sources</id>
+                <phase>process-sources</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                  <encoding>UTF-8</encoding>
+                  <delimiters>
+                    <delimiter>${*}</delimiter>
+                  </delimiters>
+                  <outputDirectory>${project.build.directory}/protobuf/</outputDirectory>
+                  <resources>
+                    <resource>
+                      <directory>src/main/protobuf</directory>
+                      <filtering>true</filtering>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+	    </executions>
+      </plugin>
+      <plugin>
+	<groupId>org.codehaus.mojo</groupId>
+	<artifactId>exec-maven-plugin</artifactId>
+
+	<executions>
+	  <execution>
+	    <id>protobuf-compile</id>
+	    <phase>compile</phase>
+	    <goals>
+	      <goal>exec</goal>
+	    </goals>
+	    <configuration>
+	      <executable>protoc</executable>
+	      <workingDirectory>${basedir}</workingDirectory>
+	      <arguments>
+		<argument>-I</argument>
+		<argument>${project.build.directory}/protobuf</argument>
+		<argument>--cpp_out=${project.build.directory}/cpp</argument>
+		<argument>--python_out=${project.build.directory}/python</argument>
+		<argument>${project.build.directory}/protobuf/aqdaudit.proto</argument>
+		<argument>${project.build.directory}/protobuf/aqdsystems.proto</argument>
+		<argument>${project.build.directory}/protobuf/aqdservices.proto</argument>
+		<argument>${project.build.directory}/protobuf/aqdnetworks.proto</argument>
+		<argument>${project.build.directory}/protobuf/aqdlocations.proto</argument>
+		<argument>${project.build.directory}/protobuf/windhcp.proto</argument>
+		<argument>${project.build.directory}/protobuf/aqdparamdefinitions.proto</argument>
+		<argument>${project.build.directory}/protobuf/aqddnsdomains.proto</argument>
+		<argument>${project.build.directory}/protobuf/aqdparameters.proto</argument>
+
+	      </arguments>
+	    </configuration>
+	  </execution>
+	</executions>
+
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>rpm-maven-plugin</artifactId>
+	<executions>
+	  <execution>
+	    <id>build-rpm</id>
+	    <goals>
+	      <goal>attached-rpm</goal>
+	    </goals>
+            <configuration>
+              <summary>Protocol buffers definitions for Aquilon</summary>
+              <name>${project.artifactId}</name>
+              <group>Quattor</group>
+              <packager>Quattor</packager>
+              <vendor>Quattor</vendor>
+              <copyright>www.quattor.org</copyright>
+              <url>${project.url}</url>
+              <needarch>noarch</needarch>
+              <description>${project.name}</description>
+              <requires>
+		<require>protobuf</require>
+		<require>protobuf-python</require>
+              </requires>
+	      <license>Apache2</license>
+              <mappings>
+
+		<mapping>
+		  <directory>${python.site.lib}/aquilon/protocols</directory>
+		  <username>root</username>
+		  <groupname>root</groupname>
+		  <directoryIncluded>false</directoryIncluded>
+		  <sources>
+                    <source>
+                      <location>target/python</location>
+                    </source>
+		  </sources>
+		</mapping>
+
+		<mapping>
+		  <directory>/usr/share/aquilon/protocols/protobuf</directory>
+		  <username>root</username>
+		  <groupname>root</groupname>
+		  <directoryIncluded>false</directoryIncluded>
+		  <sources>
+		    <source>
+		      <location>${project.build.directory}/protobuf</location>
+		    </source>
+		  </sources>
+		</mapping>
+		<mapping>
+		  <directory>/usr/share/aquilon/protocols/cpp</directory>
+		  <username>root</username>
+		  <groupname>root</groupname>
+		  <directoryIncluded>false</directoryIncluded>
+		  <sources>
+		    <source>
+		      <location>${project.build.directory}/cpp</location>
+		    </source>
+		  </sources>
+		</mapping>
+
+              </mappings>
+            </configuration>
+	  </execution>
+	</executions>
+      </plugin>
+
+    </plugins>
+
+  </build>
+
+</project>
