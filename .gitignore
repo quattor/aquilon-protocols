@@ -1,0 +1,8 @@
+build
+dist
+*pb2.py
+*.cc
+*.h
+MANIFEST
+*.old
+*~
