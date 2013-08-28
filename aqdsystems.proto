@@ -20,6 +20,7 @@ message Host {
 	optional int32 owner_eonid = 16;
 	repeated NamedServiceInstance services_used = 17;
 	repeated NamedServiceInstance services_provided = 18;
+	repeated EonIdMap eonid_maps = 19;
 }
 
 message Machine {
@@ -58,6 +59,7 @@ message Personality {
     optional int32 maint_threshold = 12 [default = -1];
     optional string vmhost_capacity_function = 13;
     optional double vmhost_overcommit_memory = 14;
+    repeated EonIdMap eonid_maps = 15;
 
 }
 
@@ -169,6 +171,11 @@ message Filesystem {
 
 message Application {
     optional int32 eonid = 1;
+}
+
+message EonIdMap {
+    required string target = 1;
+    required int32 eonid = 2;
 }
 
 message Intervention {
