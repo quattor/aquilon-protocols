@@ -81,6 +81,7 @@ message Interface {
     optional string interface_type = 5;
     optional int32 network_id = 6;  // This is no longer sent by aqd.
     optional string fqdn = 7;
+    repeated string aliases = 8;
 }
 
 message OperatingSystem {
@@ -191,6 +192,7 @@ message ServiceAddress {
     required string ip = 1;
     required string fqdn = 2;
     repeated string interfaces = 3;
+    repeated string aliases = 4;
 }
 
 message Hostlink {
