@@ -4,7 +4,7 @@ PROTODIR = ${INSTALLDIR}/protocols
 PYTHONDIR =  ${INSTALLDIR}/lib/python
 PERLDIR = ${INSTALLDIR}/lib/perl5
 CPPDIR = ${INSTALLDIR}/lib/cpp
-PROTOC = /ms/dist/fsf/PROJ/protoc/2.3.0/bin/protoc
+PROTOC = /ms/dist/fsf/PROJ/protoc/2.4.1ms3/bin/protoc
 
 install:
 	mkdir -p ${PROTODIR}
