@@ -1,11 +1,11 @@
-#!/ms/dist/perl5/bin/perl5.8
+#!/ms/dist/perl5/bin/perl5.14
 
 use warnings;
 use strict;
 
 use MSDW::Version
-  'Class-Accessor'     => '0.31', 
-  'Parse-RecDescent'   => '1.963',
+  'Class-Accessor'     => '0.34',
+  'Parse-RecDescent'   => '1.967009',
   'Google-ProtocolBuffers' => '0.08',
 ;
 use Google::ProtocolBuffers;
