@@ -27,6 +27,10 @@ message Host {
     repeated EonIdMap eonid_maps = 19;
 }
 
+message HostList {
+    repeated Host hosts = 1;
+}
+
 message Machine {
     optional string name = 1;
     optional string host = 2;
@@ -66,6 +70,10 @@ message Personality {
     repeated EonIdMap eonid_maps = 15;
 }
 
+message PersonalityList {
+    repeated Personality personalities = 1;
+}
+
 message Domain {
     optional string name = 1;
     optional string owner = 2;
@@ -93,14 +101,6 @@ message OperatingSystem {
     optional string version = 3;
 }
 
-message HostList {
-    repeated Host hosts = 1;
-}
-
-message PersonalityList {
-    repeated Personality personalities = 1;
-}
-
 message OperatingSystemList {
     repeated OperatingSystem operating_systems = 1;
 }
@@ -125,6 +125,10 @@ message Cluster {
     optional int32 max_members = 18;
 }
 
+message ClusterList {
+    repeated Cluster clusters = 1;
+}
+
 message KeyIntPair {
     required string name = 1;
     required sint64 value = 2;
@@ -134,10 +138,6 @@ message KeyIntPair {
 message NamedServiceInstance {
     required string service = 1;
     optional string instance = 2;
-}
-
-message ClusterList {
-    repeated Cluster clusters = 1;
 }
 
 message Resource {
