@@ -1,5 +1,9 @@
+// -*- cpy-indent-level: 4; indent-tabs-mode: nil -*-
+// ex: set expandtab softtabstop=4 shiftwidth=4:
 package windhcp;
+
 import "aqdlocations.proto";
+
 
 message WinDhcp {
     optional aqdlocations.Location location = 1;

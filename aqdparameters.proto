@@ -1,5 +1,9 @@
+// -*- cpy-indent-level: 4; indent-tabs-mode: nil -*-
+// ex: set expandtab softtabstop=4 shiftwidth=4:
 package aqdparameters;
+
 import "aqdsystems.proto";
+
 
 message Parameter {
     required string path = 4;
