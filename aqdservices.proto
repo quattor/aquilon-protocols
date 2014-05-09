@@ -1,12 +1,20 @@
+// -*- cpy-indent-level: 4; indent-tabs-mode: nil -*-
+// ex: set expandtab softtabstop=4 shiftwidth=4:
 package aqdservices;
+
 import "aqdsystems.proto";
 import "aqdlocations.proto";
 import "aqdnetworks.proto";
+
 
 message Service {
     optional string name = 1;
     optional string template = 2;
     repeated ServiceInstance serviceinstances = 3;
+}
+
+message ServiceList {
+    repeated Service services = 1;
 }
 
 message ServiceInstance {
@@ -16,19 +24,15 @@ message ServiceInstance {
     repeated aqdsystems.Host clients = 4;
 }
 
+message ServiceInstanceList {
+    repeated ServiceList servicelists = 1;
+}
+
 message ServiceMap {
     optional aqdlocations.Location location = 1;
     optional Service service = 2;
     optional aqdsystems.Personality personality = 3;
     optional aqdnetworks.Network network = 4;
-}
-
-message ServiceList {
-    repeated Service services = 1;
-}
-
-message ServiceInstanceList {
-    repeated ServiceList servicelists = 1;
 }
 
 message ServiceMapList {
