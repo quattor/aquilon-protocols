@@ -267,4 +267,16 @@ message Feature {
     optional bool post_personality = 3;
     optional Model model = 4;
     optional string interface_name = 5;
+    optional int32 owner_eonid = 6;
+    enum Visibility {
+        PUBLIC = 0;
+        RESTRICTED = 1;
+        OWNER_ONLY = 2;
+        OWNER_APPROVED = 3;
+    };
+    optional Visibility visibility = 7;
+}
+
+message FeatureList {
+    repeated Feature features = 1;
 }
