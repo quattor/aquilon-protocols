@@ -163,8 +163,8 @@ message Cluster {
     repeated Resource resources = 11;
     repeated NamedServiceInstance aligned_services = 12;
     repeated Personality allowed_personalities = 13;
-    optional string vm_to_host_ratio = 14 [deprecated];
-    optional int32 max_vm_count = 15 [deprecated];
+    optional string vm_to_host_ratio = 14 [deprecated=true];
+    optional int32 max_vm_count = 15 [deprecated=true];
     repeated KeyIntPair limits = 16;
     repeated KeyIntPair usage = 17;
     optional int32 max_members = 18;
