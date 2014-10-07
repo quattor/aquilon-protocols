@@ -163,8 +163,8 @@ message Cluster {
     repeated Resource resources = 11;
     repeated NamedServiceInstance aligned_services = 12;
     repeated Personality allowed_personalities = 13;
-    optional string vm_to_host_ratio = 14;
-    optional int32 max_vm_count = 15;
+    optional string vm_to_host_ratio = 14 [deprecated];
+    optional int32 max_vm_count = 15 [deprecated];
     repeated KeyIntPair limits = 16;
     repeated KeyIntPair usage = 17;
     optional int32 max_members = 18;
@@ -267,4 +267,16 @@ message Feature {
     optional bool post_personality = 3;
     optional Model model = 4;
     optional string interface_name = 5;
+    optional int32 owner_eonid = 6;
+    enum Visibility {
+        PUBLIC = 0;
+        RESTRICTED = 1;
+        OWNER_ONLY = 2;
+        OWNER_APPROVED = 3;
+    };
+    optional Visibility visibility = 7;
+}
+
+message FeatureList {
+    repeated Feature features = 1;
 }
