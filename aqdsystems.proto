@@ -26,6 +26,7 @@ message Host {
     repeated NamedServiceInstance services_provided = 18;
     repeated EonIdMap eonid_maps = 19;
     optional string sandbox_author = 20;
+    optional VirtualSwitch virtual_switch = 21;
 }
 
 message HostList {
@@ -172,10 +173,32 @@ message Cluster {
     optional int32 max_members = 18;
     optional aqdlocations.Location location_constraint = 19;
     optional string sandbox_author = 20;
+    optional VirtualSwitch virtual_switch = 21;
 }
 
 message ClusterList {
     repeated Cluster clusters = 1;
+}
+
+message MetaCluster {
+    required string name = 1;
+    optional string status = 2;
+    optional Personality personality = 3;
+    optional Domain domain = 4;
+    repeated Cluster clusters = 5;
+    repeated Resource resources = 6;
+    repeated NamedServiceInstance services_used = 7;
+    optional int32 max_members = 8;
+    optional aqdlocations.Location location_constraint = 9;
+    optional VirtualSwitch virtual_switch = 10;
+
+    // Uncommon attributes should be >= 16
+    repeated Personality allowed_personalities = 16;
+    optional string sandbox_author = 17;
+}
+
+message MetaClusterList {
+    repeated MetaCluster metaclusters = 1;
 }
 
 message KeyIntPair {
@@ -283,4 +306,20 @@ message Feature {
 
 message FeatureList {
     repeated Feature features = 1;
+}
+
+message PortGroup {
+    optional string ip = 1;
+    optional int32 cidr = 2;
+    optional int64 network_tag = 3;
+    optional string usage = 4;
+}
+
+message VirtualSwitch {
+    required string name = 1;
+    repeated PortGroup portgroups = 2;
+}
+
+message VirtualSwitchList {
+    repeated VirtualSwitch virtual_switches = 1;
 }
