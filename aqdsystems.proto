@@ -61,7 +61,7 @@ message Disk {
     optional string bus_address = 6;
     optional bool snapshotable = 7;
     optional Resource backing_store = 8;
-    optional int32 iops = 9;
+    optional int32 iops_limit = 9;
 }
 
 message AddOnModule {
