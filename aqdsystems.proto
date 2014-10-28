@@ -25,6 +25,7 @@ message Host {
     repeated NamedServiceInstance services_used = 17;
     repeated NamedServiceInstance services_provided = 18;
     repeated EonIdMap eonid_maps = 19;
+    optional string sandbox_author = 20;
 }
 
 message HostList {
@@ -170,6 +171,7 @@ message Cluster {
     repeated KeyIntPair usage = 17;
     optional int32 max_members = 18;
     optional aqdlocations.Location location_constraint = 19;
+    optional string sandbox_author = 20;
 }
 
 message ClusterList {
