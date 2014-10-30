@@ -169,6 +169,7 @@ message Cluster {
     repeated KeyIntPair limits = 16;
     repeated KeyIntPair usage = 17;
     optional int32 max_members = 18;
+    optional aqdlocations.Location location_constraint = 19;
 }
 
 message ClusterList {
