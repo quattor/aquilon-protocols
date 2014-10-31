@@ -6,6 +6,11 @@ import "aqdsystems.proto";
 import "aqdlocations.proto";
 
 
+message DynamicRange {
+    optional string start = 1;
+    optional string end = 2;
+}
+
 message Network {
     optional string name = 1;
     optional string ip = 2;
@@ -16,11 +21,12 @@ message Network {
     optional string sysloc = 7;
     optional aqdlocations.Location location = 8;
     repeated aqdsystems.Host hosts = 9;
-    optional int32 id = 10;
+    optional int32 id = 10 [deprecated=true];
     optional string type = 11;
-    optional bool discoverable = 12;
-    optional bool discovered = 13;
+    optional bool discoverable = 12 [deprecated=true];
+    optional bool discovered = 13 [deprecated=true];
     optional string env_name = 14;
+    repeated DynamicRange dynamic_ranges = 15;
 }
 
 message NetworkList {
