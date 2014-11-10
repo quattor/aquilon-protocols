@@ -48,6 +48,10 @@ message Machine {
     // Tag values >= 16 are encoded less eficiently, so use them for data that is not common
     optional string uri = 16;
     repeated AddOnModule add_on_modules = 17;
+    // We could add "oneof" around vm_cluster and vm_host, but
+    // Google::ProtocolBuffers do not support that yet
+    optional Cluster vm_cluster = 18;
+    optional Host vm_host = 19;
 }
 
 message MachineList {
