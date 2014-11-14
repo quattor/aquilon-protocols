@@ -9,7 +9,7 @@ import "aqdnetworks.proto";
 
 message Service {
     optional string name = 1;
-    optional string template = 2;
+    optional string template = 2 [deprecated=true];
     repeated ServiceInstance serviceinstances = 3;
 }
 
@@ -19,7 +19,7 @@ message ServiceList {
 
 message ServiceInstance {
     optional string name = 1;
-    optional string template = 2;
+    optional string template = 2 [deprecated=true];
     repeated aqdsystems.Host servers = 3;
     repeated aqdsystems.Host clients = 4;
 }
