@@ -102,6 +102,7 @@ message Personality {
     optional string vmhost_capacity_function = 13;
     optional double vmhost_overcommit_memory = 14;
     repeated EonIdMap eonid_maps = 15;
+    optional string version = 16;
 }
 
 message PersonalityList {
