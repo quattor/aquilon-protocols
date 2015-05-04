@@ -146,6 +146,11 @@ message Interface {
     repeated string aliases = 8;
     optional string bus_address = 9;
     optional Model model = 10;
+
+    optional string port_group_usage = 16;
+    optional int64 port_group_tag = 17;
+    // This should be redundant...
+    optional string port_group_name = 18;
 }
 
 message OperatingSystem {
