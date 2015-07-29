@@ -12,7 +12,8 @@ message ParamDefinition {
     optional string description = 4;
     optional string template = 5;
     optional bool is_required = 6 [default = false];
-    optional bool rebuild_required = 7 [default = false];
+    optional bool rebuild_required = 7 [deprecated = true];
+    optional aqdsystems.Activation activation = 8;
 }
 
 message ParamDefinitionList {
