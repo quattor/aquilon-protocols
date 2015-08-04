@@ -299,6 +299,13 @@ message RebootSchedule {
     optional string week = 3;
 }
 
+enum Activation {
+        NONE = 0;
+        REBUILD = 1;
+        REBOOT = 2;
+        DISPATCH = 3;
+}
+
 message Feature {
     required string name = 1;
     required string type = 2;
@@ -313,6 +320,8 @@ message Feature {
         OWNER_APPROVED = 3;
     };
     optional Visibility visibility = 7;
+    optional Activation activation = 8;
+    optional Activation deactivation = 9;
 }
 
 message FeatureList {
