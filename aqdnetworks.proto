@@ -28,6 +28,7 @@ message Network {
     optional string env_name = 14;
     repeated DynamicRange dynamic_ranges = 15;
     repeated string routers = 16;
+    optional string compartment = 17;
 }
 
 message NetworkList {
