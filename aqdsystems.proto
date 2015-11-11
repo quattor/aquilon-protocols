@@ -58,6 +58,45 @@ message MachineList {
     repeated Machine machines = 1;
 }
 
+message HardwareDetails {
+    enum HardwareType {
+        NETWORK_DEVICE = 1;
+    };
+    required HardwareType hardware_type = 1;
+    required string label = 2;
+    optional Model model = 3;
+    optional aqdlocations.Location location = 4;
+    repeated Interface interfaces = 5;
+    // Tag values >= 16 are encoded less eficiently, so we use them for data
+    // that are not common.  All of the following fall into that category.
+    optional string serial_no = 16;
+}
+
+message SystemDetails {
+    optional Domain domain = 1;
+    optional string status = 2;
+    optional Personality personality = 3;
+    optional OperatingSystem operating_system = 4;
+    optional string cluster = 5;
+    repeated Resource resources = 6;
+    optional int32 owner_eonid = 7;
+    // Tag values >= 16 are encoded less eficiently, so
+    // use them for data that is not common
+    repeated EonIdMap eonid_maps = 16;
+    repeated NamedServiceInstance services_used = 17;
+    repeated NamedServiceInstance services_provided = 18;
+}
+
+message NetworkDevice {
+    required string primary_name = 1;
+    optional HardwareDetails hardware = 2;
+    optional SystemDetails system = 3;
+}
+
+message NetworkDeviceList {
+    repeated NetworkDevice devices = 1;
+}
+
 message Disk {
     optional string device_name = 1;
     optional int64 capacity = 2;
@@ -135,6 +174,19 @@ message ModelList {
     repeated Model models = 1;
 }
 
+message AddressAssignment {
+    enum AddressAssignmentType {
+        STANDARD = 0;
+        SHARED = 1;
+    };
+    optional AddressAssignmentType assignment_type = 1;
+    optional string label = 2;
+    optional string ip = 3;
+    repeated string fqdn = 4;
+    repeated string aliases = 5;
+    optional int32 priority = 6;
+}
+
 message Interface {
     optional string device = 1;
     optional string mac = 2;
@@ -146,6 +198,7 @@ message Interface {
     repeated string aliases = 8;
     optional string bus_address = 9;
     optional Model model = 10;
+    repeated AddressAssignment address_assignments = 11;
 
     optional string port_group_usage = 16;
     optional int64 port_group_tag = 17;
