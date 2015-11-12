@@ -24,10 +24,6 @@ message ServiceInstance {
     repeated aqdsystems.Host clients = 4;
 }
 
-message ServiceInstanceList {
-    repeated ServiceList servicelists = 1;
-}
-
 message ServiceMap {
     optional aqdlocations.Location location = 1;
     optional Service service = 2;
