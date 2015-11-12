@@ -21,7 +21,7 @@ message ServiceInstance {
     optional string name = 1;
     optional string template = 2 [deprecated=true];
     repeated aqdsystems.Host servers = 3;
-    repeated aqdsystems.Host clients = 4;
+    repeated aqdsystems.Host clients = 4 [deprecated=true];
 }
 
 message ServiceMap {
