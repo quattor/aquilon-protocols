@@ -375,6 +375,7 @@ message Feature {
     optional Visibility visibility = 7;
     optional Activation activation = 8;
     optional Activation deactivation = 9;
+    optional string comments = 10;
 }
 
 message FeatureList {
