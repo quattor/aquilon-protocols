@@ -21,11 +21,16 @@ message ServiceInstance {
     optional string name = 1;
     optional string template = 2 [deprecated=true];
     repeated aqdsystems.Host servers = 3;
-    repeated aqdsystems.Host clients = 4;
+    repeated aqdsystems.Host clients = 4 [deprecated=true];
+    repeated ServiceInstanceProvider provider = 5;
 }
 
-message ServiceInstanceList {
-    repeated ServiceList servicelists = 1;
+message ServiceInstanceProvider {
+    optional string target_ip = 1;
+    optional string target_fqdn = 2;
+    optional aqdsystems.Host host = 3;
+    optional aqdsystems.Cluster cluster = 4;
+    optional aqdsystems.ServiceAddress service_address = 5;
 }
 
 message ServiceMap {
