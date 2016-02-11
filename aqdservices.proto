@@ -38,6 +38,7 @@ message ServiceMap {
     optional Service service = 2;
     optional aqdsystems.Personality personality = 3;
     optional aqdnetworks.Network network = 4;
+    optional string host_environment = 5;
 }
 
 message ServiceMapList {
