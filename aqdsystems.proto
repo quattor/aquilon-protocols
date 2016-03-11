@@ -274,6 +274,7 @@ message KeyIntPair {
 message NamedServiceInstance {
     required string service = 1;
     optional string instance = 2;
+    optional string host_environment = 3;
 }
 
 message Resource {
