@@ -1,0 +1,71 @@
+// -*- cpy-indent-level: 4; indent-tabs-mode: nil -*-
+// ex: set expandtab softtabstop=4 shiftwidth=4 syntax=proto:
+package aqdnotifications;
+
+//
+// Notification message
+//
+// When an entity within the Aquilon broker changes it generates a
+// notification.  These notification are made available as a stream
+// via the 'show_notifications' command.
+//
+message Notification {
+    // UUID uniquely identifying this notification
+    optional string uuid = 1;
+
+    // Time this notification message was generated.  This should not
+    // be confused with the last update time of the entity.
+    optional uint64 time_stamp = 2;
+
+    // The 'action' that created the notification.  Note that an UPDATE
+    // may be generated for an entity for which no CREATE message was
+    // generated; the same applies to DELETE.
+    enum NotificationAction {
+        CREATE = 1;
+        UPDATE = 2;
+        DELETE = 3;
+    };
+    optional NotificationAction action = 3;
+
+    // The UUID of the broker command, and the user that executed it,
+    // which caused the creation of this notification.  This has been
+    // included to aid logging, it must not be used for any other
+    // purpose.
+    optional string correlation_uuid = 4;
+    optional string correlation_user = 5;
+
+    // The type of entity to which this notification is related.  Depending
+    // on the contents of this field its possible to determine which entity
+    // key to evaluate.
+    enum NotificationEntityType {
+        HARDWARE_ENTITY = 1;        // hardware_entity
+        DNS_RECORD = 2;             // dns_record
+    };
+    optional NotificationEntityType entity_type = 6;
+
+    // Only one of the following will be populated, depending on the contents
+    // of 'entity_type'.  We use key values >= 32 to allow for expansion, one
+    // tag value should be used per entity type (not >=16 tag values are less
+    // efficient to store).
+    optional HardwareEntityRef hardware_entity = 32;
+    optional DnsRecordRef dns_record = 33;
+};
+
+//
+// Entity Ref
+//
+// The following messages uniquely represent a given entity.  Specifically
+// they contain, as required fields, enough information to identify the
+// entity.  For example a DNS record is an FQDN within a given DNS
+// environment, the FQDN is not sufficient.
+
+message HardwareEntityRef {
+    required string label = 1;
+    optional string model_type = 2;
+};
+
+message DnsRecordRef {
+    required string fqdn = 1;
+    required string environment_name = 2;
+};
+
