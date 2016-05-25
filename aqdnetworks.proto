@@ -34,3 +34,11 @@ message Network {
 message NetworkList {
     repeated Network networks = 1;
 }
+
+message NetworkCompartment {
+    required string name = 1;
+}
+
+message NetworkCompartmentList {
+    repeated NetworkCompartment compartments = 1;
+}
