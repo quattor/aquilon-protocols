@@ -52,6 +52,7 @@ message Machine {
     // Google::ProtocolBuffers do not support that yet
     optional Cluster vm_cluster = 18;
     optional Host vm_host = 19;
+    optional string uuid = 20;
 }
 
 message MachineList {
@@ -238,6 +239,7 @@ message Cluster {
     optional string sandbox_author = 20;
     optional VirtualSwitch virtual_switch = 21;
     optional string metacluster = 22;
+    repeated Cluster grouped_cluster = 23;
 }
 
 message ClusterList {

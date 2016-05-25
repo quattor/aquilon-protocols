@@ -11,6 +11,8 @@ message Service {
     optional string name = 1;
     optional string template = 2 [deprecated=true];
     repeated ServiceInstance serviceinstances = 3;
+
+    optional int32 default_max_clients = 16;
 }
 
 message ServiceList {
@@ -23,6 +25,8 @@ message ServiceInstance {
     repeated aqdsystems.Host servers = 3;
     repeated aqdsystems.Host clients = 4 [deprecated=true];
     repeated ServiceInstanceProvider provider = 5;
+
+    optional int32 max_clients = 16;
 }
 
 message ServiceInstanceProvider {
