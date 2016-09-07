@@ -400,3 +400,35 @@ message VirtualSwitch {
 message VirtualSwitchList {
     repeated VirtualSwitch virtual_switches = 1;
 }
+
+message LocationPreference {
+    repeated aqdlocations.Location location = 1;
+    optional string cluster = 2;
+    optional aqdlocations.Location prefer = 3;
+}
+
+message LocationPreferenceList {
+    repeated LocationPreference location_preference = 1;
+}
+
+message ClusterAutoStartEntry {
+    required string cluster = 1;
+    optional string rg = 2;
+    required string member = 3;
+    required int32 order_idx = 4;
+}
+
+message ClusterAutoStartList {
+    repeated ClusterAutoStartEntry cluster_autostartlist = 1;
+}
+
+message ClusterSystemEntry {
+    required string cluster = 1;
+    optional string rg = 2;
+    required string member = 3;
+    required int32 priority = 4;
+}
+
+message ClusterSystemList {
+    repeated ClusterSystemEntry cluster_systemlist = 1;
+}
