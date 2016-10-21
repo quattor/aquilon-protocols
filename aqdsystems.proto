@@ -207,10 +207,22 @@ message Interface {
     optional string port_group_name = 18;
 }
 
+enum Lifecycle {
+        EVALUATION = 0;
+        PRE_PROD = 1;
+        EARLY_PROD = 2;
+        PRODUCTION = 3;
+        PRE_DECOMMISSION = 4;
+        INACTIVE = 5;
+        WITHDRAWN = 6;
+        DECOMMISSIONED = 7;
+}
+
 message OperatingSystem {
     optional Archetype archetype = 1;
     optional string name = 2;
     optional string version = 3;
+    optional Lifecycle lifecycle = 4;
 }
 
 message OperatingSystemList {
