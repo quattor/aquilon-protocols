@@ -302,6 +302,8 @@ message Resource {
     optional Share share = 8;
     optional RebootSchedule reboot_schedule = 9;
     optional ResourceGroup resourcegroup = 10;
+    repeated ClusterAutoStartEntry autostartlist = 11;
+    repeated ClusterSystemEntry systemlist = 12;
 }
 
 message ResourceList {
