@@ -16,6 +16,7 @@ message Location {
     optional string row = 5;
     optional string col = 6;
     repeated LocationIdentity parents = 7;
+    optional string uri = 8;
 }
 
 message LocationList {
