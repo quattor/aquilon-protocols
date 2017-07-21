@@ -348,6 +348,7 @@ message ServiceAddress {
     required string fqdn = 2;
     repeated string interfaces = 3;
     repeated string aliases = 4;
+    required aqdnetworks.NetworkEnvironment network_environment = 5;
 }
 
 message Hostlink {
