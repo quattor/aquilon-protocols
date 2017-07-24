@@ -4,7 +4,6 @@ package aqdsystems;
 
 import "aqdlocations.proto";
 
-
 message Host {
     required string hostname = 1;
     optional string fqdn = 2;
@@ -348,7 +347,7 @@ message ServiceAddress {
     required string fqdn = 2;
     repeated string interfaces = 3;
     repeated string aliases = 4;
-    required aqdnetworks.NetworkEnvironment network_environment = 5;
+    required NetworkEnvironment network_environment = 5;
 }
 
 message Hostlink {
@@ -448,4 +447,14 @@ message ClusterSystemEntry {
 
 message ClusterSystemList {
     repeated ClusterSystemEntry cluster_systemlist = 1;
+}
+
+message DNSEnvironment {
+    required string name = 1;
+}
+
+message NetworkEnvironment {
+    required string name = 1;
+    optional aqdlocations.Location location = 2;
+    required DNSEnvironment dns_environment = 3;
 }
