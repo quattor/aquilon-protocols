@@ -29,7 +29,7 @@ message Network {
     repeated DynamicRange dynamic_ranges = 15;
     repeated string routers = 16;
     optional string compartment = 17;
-    optional NetworkEnvironment network_environment = 18;
+    optional aqdsystems.NetworkEnvironment network_environment = 18;
     // Note: network_environment.name == env_name
 }
 
@@ -43,14 +43,4 @@ message NetworkCompartment {
 
 message NetworkCompartmentList {
     repeated NetworkCompartment compartments = 1;
-}
-
-message DNSEnvironment {
-    required string name = 1;
-}
-
-message NetworkEnvironment {
-    required string name = 1;
-    optional aqdlocations.Location location = 2;
-    required DNSEnvironment dns_environment = 3;
 }
