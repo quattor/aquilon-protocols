@@ -27,7 +27,7 @@ sub usage {
 my %opt;
 GetOptions(\%opt, qw(spec=s directory=s proto_path=s@ help)) || usage(1, "Can't process options");
 if ($opt{help}) {
-  usage(0, undef);
+    usage(0, undef);
 }
 if (! $opt{spec}) {
     die "--spec option is mandatory\n";

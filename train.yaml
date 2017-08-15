@@ -8,3 +8,8 @@ build_types:
     - build_type:
         name: release
         build: make install
+
+test_types:
+    - test_type:
+        name: unit
+        test: make test

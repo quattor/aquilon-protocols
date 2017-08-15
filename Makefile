@@ -17,3 +17,8 @@ install:
 	find ${ORIGPROTODIR}/ -name \*.proto -print0 | xargs -0 -n1 ./bin/create_perl_modules.pl --proto_path=${ORIGPROTODIR}/ --directory ${PERLDIR} --spec
 	find ${PYTHONDIR} -name '*.py' -print0 | xargs -0 -n1 ./bin/compile_for_dist.py
 	find ${INSTALLDIR}/ -name '.__afs*' -print0 | perl -0 -lne unlink
+
+test:
+	@TMPDIR=`mktemp --tmpdir -d aquilon-protocols.test.XXXXXX`; \
+	 trap 'rm -rf "$$TMPDIR"' EXIT; \
+	 $(MAKE) INSTALLDIR=$$TMPDIR install
