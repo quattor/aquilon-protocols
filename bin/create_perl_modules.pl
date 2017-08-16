@@ -6,7 +6,7 @@ use strict;
 use MSDW::Version
   'Class-Accessor'     => '0.34',
   'Parse-RecDescent'   => '1.967009',
-  'Google-ProtocolBuffers' => '0.08',
+  'Google-ProtocolBuffers' => '0.12',
 ;
 use Google::ProtocolBuffers;
 use Getopt::Long;
@@ -20,17 +20,28 @@ sub usage {
     if ($message) {
 	print "$message\n";
     }
-    print "Usage: " . basename($0) . " --spec <protocol buffer spec> --directory <target directory> || --help\n";
+    print "Usage: " . basename($0) . " --spec <protocol buffer spec> --directory <target directory> --proto_path <proto path> || --help\n";
     exit($exit_code);
 }
 
 my %opt;
-GetOptions(\%opt, qw(spec=s directory=s help)) || usage(1, "Can't process options");
+GetOptions(\%opt, qw(spec=s directory=s proto_path=s@ help)) || usage(1, "Can't process options");
+if ($opt{help}) {
+    usage(0, undef);
+}
+if (! $opt{spec}) {
+    die "--spec option is mandatory\n";
+}
 if (! -f $opt{spec}) {
     die "Can't find protocol buffer spec file '$opt{spec} (--spec)'\n";
 }
 my $pbname = basename($opt{spec});
 $pbname =~ s/\b([a-z])/\u$1/g;
 $pbname =~ s/proto/pm/i;
-my $target_module = $opt{directory} . "/" . $pbname;
-Google::ProtocolBuffers->parsefile($opt{spec}, { generate_code => $target_module } );
+my %options = (
+    generate_code => $opt{directory} . "/" . $pbname,
+);
+if ($opt{proto_path}) {
+    $options{include_dir} = $opt{proto_path};
+}
+Google::ProtocolBuffers->parsefile($opt{spec}, \%options);

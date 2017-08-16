@@ -1,0 +1,15 @@
+train_version: 1.0
+
+tools:
+    - perl5/core/5.20
+    - python/core/2.7.9
+
+build_types:
+    - build_type:
+        name: release
+        build: make install
+
+test_types:
+    - test_type:
+        name: unit
+        test: make test
