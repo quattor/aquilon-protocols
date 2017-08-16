@@ -2,6 +2,8 @@
 // ex: set expandtab softtabstop=4 shiftwidth=4 syntax=proto:
 package aqdnotifications;
 
+import "aqddnsdomains.proto";
+
 //
 // Notification message
 //
@@ -47,8 +49,10 @@ message Notification {
     // of 'entity_type'.  We use key values >= 32 to allow for expansion, one
     // tag value should be used per entity type (not >=16 tag values are less
     // efficient to store).
-    optional HardwareEntityRef hardware_entity = 32;
-    optional DnsRecordRef dns_record = 33;
+    oneof payload {
+        HardwareEntityRef hardware_entity = 32;
+        aqddnsdomains.DNSRecordList dns_record_list = 33;
+    };
 };
 
 //
@@ -62,10 +66,5 @@ message Notification {
 message HardwareEntityRef {
     required string label = 1;
     optional string model_type = 2;
-};
-
-message DnsRecordRef {
-    required string fqdn = 1;
-    required string environment_name = 2;
 };
 
