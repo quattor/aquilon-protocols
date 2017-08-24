@@ -11,3 +11,34 @@ message DNSDomain {
 message DNSDomainList {
     repeated DNSDomain dns_domains = 1;
 }
+
+message DNSRecordData {
+    enum DNSRecordType {
+        A = 1;
+        AAAA = 2;
+        CNAME = 3;
+        SRV = 4;
+        TXT = 5;
+        PTR = 6;
+        MX = 7;
+    }
+
+    required DNSRecordType rrtype = 1;
+    optional string target = 2;
+    optional string target_environment_name = 3;
+    optional int32 ttl = 4;
+
+    optional int32 priority = 8;
+    optional int32 weight = 9;
+    optional int32 port = 10;
+}
+
+message DNSRecord {
+    required string fqdn = 1;
+    optional string environment_name = 2;
+    repeated DNSRecordData rdata = 3;
+}
+
+message DNSRecordList {
+    repeated DNSRecord records = 1;
+}
