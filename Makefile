@@ -19,6 +19,6 @@ install:
 	find ${INSTALLDIR}/ -name '.__afs*' -print0 | perl -0 -lne unlink
 
 test:
-	@TMPDIR=`mktemp --tmpdir -d aquilon-protocols.test.XXXXXX`; \
+	@TMPDIR=`mktemp -t -d aquilon-protocols.test.XXXXXX`; \
 	 trap 'rm -rf "$$TMPDIR"' EXIT; \
 	 $(MAKE) INSTALLDIR=$$TMPDIR install
