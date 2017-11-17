@@ -14,6 +14,9 @@ message ParamDefinition {
     optional bool is_required = 6 [default = false];
     optional bool rebuild_required = 7 [deprecated = true];
     optional aqdsystems.Activation activation = 8;
+    optional string archetype = 9;
+    optional string feature = 10;
+    optional string type = 11;
 }
 
 message ParamDefinitionList {
