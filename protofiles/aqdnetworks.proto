@@ -9,6 +9,7 @@ import "aqdlocations.proto";
 message DynamicRange {
     optional string start = 1;
     optional string end = 2;
+    optional string range_class = 3;
 }
 
 message Network {
