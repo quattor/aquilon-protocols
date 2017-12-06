@@ -31,6 +31,7 @@ message Network {
     repeated string routers = 16;
     optional string compartment = 17;
     optional aqdsystems.NetworkEnvironment network_environment = 18;
+    repeated aqdsystems.ServiceAddress service_addresses = 19;
     // Note: network_environment.name == env_name
 }
 
