@@ -18,6 +18,7 @@ message Transaction {
     optional string origin = 6;
     optional bool is_readonly = 7;
     repeated Argument arguments = 8;
+    optional string request_id = 9;
 }
 
 message TransactionList {
