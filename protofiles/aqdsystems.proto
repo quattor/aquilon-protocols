@@ -58,6 +58,30 @@ message MachineList {
     repeated Machine machines = 1;
 }
 
+message ChassisSlot {
+    optional int32 number = 1;
+    optional string type = 2;
+
+    oneof hardware_entity {
+        Machine machine = 8;
+        NetworkDevice network_device = 9;
+    };
+}
+
+message Chassis {
+    optional string name = 1;
+    optional string primary_name = 2;
+    optional aqdlocations.Location location = 3;
+    optional Model model = 4;
+    optional string serial_no = 5;
+    repeated Interface interfaces = 6;
+    repeated ChassisSlot slots = 7;
+}
+
+message ChassisList {
+    repeated Chassis chassis = 1;
+}
+
 message HardwareDetails {
     enum HardwareType {
         NETWORK_DEVICE = 1;
