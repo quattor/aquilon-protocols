@@ -42,7 +42,7 @@ class GenerateProto(build):
 py_modules = [x.replace(".py", "") for x in glob("aqd*_pb2.py")]
 
 setup(name="aquilon-protocols",
-      version="1.10",
+      version="1.38",
       description="Protocol buffers definitions and modules for Aquilon",
       long_description="""Protocol buffers definitions for Aquilon.
 
