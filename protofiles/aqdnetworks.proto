@@ -12,6 +12,10 @@ message DynamicRange {
     optional string range_class = 3;
 }
 
+message DynamicRangeList {
+    repeated DynamicRange dynamic_range = 1;
+}
+
 message Network {
     optional string name = 1;
     optional string ip = 2;
