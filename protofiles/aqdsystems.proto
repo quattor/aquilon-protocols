@@ -76,6 +76,7 @@ message Chassis {
     optional string serial_no = 5;
     repeated Interface interfaces = 6;
     repeated ChassisSlot slots = 7;
+    optional int32 owner_eonid = 8;
 }
 
 message ChassisList {
