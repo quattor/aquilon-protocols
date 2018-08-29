@@ -45,6 +45,7 @@ message NetworkList {
 
 message NetworkCompartment {
     required string name = 1;
+    optional string comments = 2;
 }
 
 message NetworkCompartmentList {
