@@ -3,8 +3,11 @@
 package aqdparameters;
 
 message Parameter {
-    required string path = 4;
-    required string value = 5;
+    optional string path = 4;
+    optional string value = 5;
+    optional string holder_type = 6;
+    optional string holder_name = 7;
+    optional string parameter = 8;
 }
 
 message ParameterList {
