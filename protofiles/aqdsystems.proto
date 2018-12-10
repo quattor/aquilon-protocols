@@ -483,3 +483,7 @@ message NetworkEnvironment {
     optional aqdlocations.Location location = 2;
     required DNSEnvironment dns_environment = 3;
 }
+
+message NetworkEnvironmentList {
+    repeated NetworkEnvironment network_environments = 1;
+}
