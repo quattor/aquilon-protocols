@@ -26,6 +26,7 @@ message DNSRecordData {
     required DNSRecordType rrtype = 1;
     optional string target = 2;
     optional string target_environment_name = 3;
+    optional string target_network_environment_name = 5;
     optional int32 ttl = 4;
 
     optional int32 priority = 8;
