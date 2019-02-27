@@ -1,0 +1,50 @@
+// -*- cpy-indent-level: 4; indent-tabs-mode: nil -*-
+// ex: set expandtab softtabstop=4 shiftwidth=4 syntax=proto:
+package aqdentitlements;
+
+import "aqdlocations.proto";
+import "aqdsystems.proto";
+
+message User {
+    optional string name = 1;
+    // The user type for that user, as defined using
+    // the 'aq add_user_type' command
+    optional string type = 2;
+    optional int32 uid = 3;
+    optional int32 gid = 4;
+    optional string fullname = 5;
+    optional string homedir = 6;
+};
+
+message UserList {
+    repeated User users = 1;
+};
+
+message Entitlement {
+    // The entitlement type for that entitlement, as defined
+    // using the 'aq add_entitlement_type' command
+    optional string type = 1;
+
+    // The entity on which the entitlement applies
+    oneof on_entity {
+        aqdsystems.Host host = 4;
+        aqdsystems.Cluster cluster = 5;
+        aqdsystems.Personality personality = 6;
+        aqdsystems.Archetype archetype = 7;
+        int32 target_eonid = 8;
+    };
+
+    // For entities requiring more details, those will be set
+    optional string host_environment = 9;
+    optional aqdlocations.Location location = 10;
+
+    // The entities to which the entitlement applies
+    oneof to_entity {
+        User user = 16;
+        int32 eonid = 17;
+    };
+};
+
+message EntitlementList {
+    repeated Entitlement entitlements = 1;
+};
