@@ -380,6 +380,7 @@ message Hostlink {
     required string owner_user = 2;
     optional string owner_group = 3;
     optional string mode = 4;
+    repeated string parents = 5;
 }
 
 message Share {
