@@ -132,6 +132,11 @@ message Disk {
     optional bool snapshotable = 7;
     optional Resource backing_store = 8;
     optional int32 iops_limit = 9;
+    optional string disk_tech = 10;
+    optional string usage = 11;
+    optional string diskgroup_key = 12;
+    optional string model_key = 13;
+    optional string vsan_policy_key = 14;
 }
 
 message AddOnModule {
