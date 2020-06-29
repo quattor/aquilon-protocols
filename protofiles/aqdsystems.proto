@@ -204,6 +204,20 @@ message ModelList {
     repeated Model models = 1;
 }
 
+message IssueState {
+    optional string name = 1;
+}
+
+message Issue {
+    optional string tracker = 1;
+    optional IssueState state = 2;
+    optional string description = 3;
+}
+
+message IssueList {
+    repeated Issue issues = 1;
+}
+
 message AddressAssignment {
     enum AddressAssignmentType {
         STANDARD = 0;
