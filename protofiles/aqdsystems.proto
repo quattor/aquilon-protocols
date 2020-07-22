@@ -212,6 +212,10 @@ message Issue {
     optional string tracker = 1;
     optional IssueState state = 2;
     optional string description = 3;
+    optional string category = 4;
+    repeated Model models = 5;
+    repeated OperatingSystem os = 6;
+
 }
 
 message IssueList {
