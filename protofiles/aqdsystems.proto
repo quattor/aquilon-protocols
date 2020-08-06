@@ -204,6 +204,25 @@ message ModelList {
     repeated Model models = 1;
 }
 
+message Issue {
+    optional string tracker = 1;
+    enum IssueState {
+        OPEN = 0;
+        CLOSED = 1;
+        DISCARDED = 2;
+    };
+    optional IssueState state = 2;
+    optional string description = 3;
+    optional string category = 4;
+    repeated Model models = 5;
+    repeated OperatingSystem os = 6;
+
+}
+
+message IssueList {
+    repeated Issue issues = 1;
+}
+
 message AddressAssignment {
     enum AddressAssignmentType {
         STANDARD = 0;
