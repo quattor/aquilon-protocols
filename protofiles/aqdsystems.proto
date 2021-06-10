@@ -137,6 +137,7 @@ message Disk {
     optional string diskgroup_key = 12;
     optional string model_key = 13;
     optional string vsan_policy_key = 14;
+    optional bool boot = 15; 
 }
 
 message AddOnModule {
