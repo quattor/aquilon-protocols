@@ -2,9 +2,12 @@ train_version: 1.0
 
 tools:
     - perl5/core/5.20
-    - python/core/2.7.9
+    - python/core/2.7.18-64
 
 build_types:
+    - build_type:
+        name: quick
+        build: make install
     - build_type:
         name: release
         build: make install
