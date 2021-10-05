@@ -38,6 +38,7 @@ message DNSRecord {
     required string fqdn = 1;
     optional string environment_name = 2;
     repeated DNSRecordData rdata = 3;
+    optional int32 owner_eonid = 4;
 }
 
 message DNSRecordList {
