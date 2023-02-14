@@ -1,1 +1,2 @@
+include protofiles/*.proto pyproject.toml VERSION.txt
 include *.proto
