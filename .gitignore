@@ -7,3 +7,6 @@ dist
 MANIFEST
 *.old
 *~
+venv
+artifactory_build
+__pycache__

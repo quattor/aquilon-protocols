@@ -1,18 +1,70 @@
 train_version: 1.0
 
 tools:
-    - perl5/core/5.20
-    - python/core/2.7.18-64
+  - perl5/core/5.20
+  - python/core/3.10.4
+  - msde/traincli/prod
+  - msde/artifactory-eng-tools/prod
+
+setup_venv_jenkins: &setup_venv_jenkins
+  - if [ -n "$TRAIN_CI" ]; then export HOME=/var/tmp/${USER} && mkdir -p ${HOME}; fi
+  - if [ -n "$TRAIN_CI" ]; then unset http_proxy; fi
+  - if [ -n "$TRAIN_CI" ]; then unset https_proxy; fi
+  - if [ -n "$TRAIN_CI" ]; then setup_user -cli pypi; fi
+
+setup_venv: &setup_venv
+  - *setup_venv_jenkins
+  - python -m venv venv
+  - . venv/bin/activate
+  - python -m pip install --upgrade pip
+  - pip install pip-tools --quiet
+  - python -m pip install pip setuptools wheel morganstanley-generate-train-metadata -U
+
+test_setup: &test_setup
+  - *setup_venv
+  - pip install .
 
 build_types:
-    - build_type:
-        name: quick
-        build: make install
-    - build_type:
-        name: release
-        build: make install
+  - build_type:
+      name: quick
+      build:
+        - toolchain: rhel7
+        - script:
+            command:
+              - make install
+              - train build --type pypi
+  - build_type:
+      name: release
+      build:
+        - toolchain: rhel7
+        - script:
+            command:
+              - make install
+              - train build --type pypi
+  - build_type:
+      name: "pypi"
+      build:
+        - toolchain: [rhel7, rhel8]
+        - script:
+            command:
+              - rm -rf artifactory_build
+              - mkdir -p artifactory_build/aquilon_protocols
+              - find protofiles/ -name \*.proto -print0 | xargs -0 -n1 /ms/dist/fsf/PROJ/protoc/3.21.6-9/bin/protoc --proto_path=protofiles/ --python_out=artifactory_build/aquilon_protocols/ --pyi_out=artifactory_build/aquilon_protocols/
+              - cp -a protofiles artifactory_build/aquilon_protocols/
+              - cp python/__init__.py artifactory_build/aquilon_protocols/
+              - '[ ! -z "${TRAIN_RELEASE_BUILD_NAME}" ] && echo ${TRAIN_RELEASE_BUILD_NAME} > VERSION.txt'
+              - *setup_venv
+              - rm -rf ../packages/pypi
+              - python -m pip install build && python -m build -o ../packages/pypi
+              - generate-train-metadata --library --name morganstanley-aquilon-protocols
+              - deactivate
 
 test_types:
-    - test_type:
-        name: unit
-        test: make test
+  - test_type:
+      name: unit
+      default: true
+      test:
+        - script:
+            - make test
+            - *test_setup
+            - python -m unittest discover -v

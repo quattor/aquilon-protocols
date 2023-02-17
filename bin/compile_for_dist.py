@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3
 # ex: set expandtab softtabstop=4 shiftwidth=4: -*- cpy-indent-level: 4; indent-tabs-mode: nil -*-
 # Copyright (C) 2008 Morgan Stanley
 #
@@ -6,9 +6,9 @@
 """Add /ms/dist to traceback of files compiled in /ms/dev."""
 
 
-import sys
 import py_compile
 import re
+import sys
 
 
 def main(args=None):
@@ -20,21 +20,24 @@ def main(args=None):
     """
     if args is None:
         args = sys.argv[1:]
-    dev_re = re.compile(r'/ms/dev/(?P<meta>[^/]+)/(?P<proj>[^/]+)'
-                        r'/(?P<release>[^/]+)/install/(?P<path>.*)')
+    dev_re = re.compile(
+        r"/ms/dev/(?P<meta>[^/]+)/(?P<proj>[^/]+)"
+        r"/(?P<release>[^/]+)/install/(?P<path>.*)"
+    )
     for filename in args:
         try:
             m = dev_re.match(filename)
             if m:
-                dfile = "/ms/dist/%(meta)s/PROJ/%(proj)s" \
-                        "/%(release)s/%(path)s" % m.groupdict()
+                dfile = (
+                    "/ms/dist/%(meta)s/PROJ/%(proj)s"
+                    "/%(release)s/%(path)s" % m.groupdict()
+                )
             else:
                 dfile = filename
             py_compile.compile(filename, dfile=dfile, doraise=True)
-        except py_compile.PyCompileError, e:
+        except py_compile.PyCompileError as e:
             sys.stderr.write(e.msg)
 
 
 if __name__ == "__main__":
     main()
-

@@ -1,0 +1,28 @@
+[project]
+name = "morganstanley-aquilon-protocols"
+dynamic = ['version']
+description = "Protocol buffers definitions and modules for Aquilon."
+keywords = ["protobuf", "google", "aquilon", "protocols"]
+authors = [
+    {email = "aqd-eng@morganstanley.com"}
+]
+license = {text = "Apache 2.0"}
+readme = "README.md"
+requires-python = ">=3.7"
+dependencies = [
+    "protobuf>=3.0.0",
+]
+
+[build-system]
+requires = ["setuptools>=65.5.1", "setuptools-scm[toml]"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "artifactory_build"}
+package-data = {"*" = ["*.pyi", "**/*.pyi", "*.proto", "**/*.proto"]}
+
+[tool.setuptools.packages.find]
+where = ["artifactory_build"]
+
+[tool.setuptools.dynamic]
+version = {file = ["VERSION.txt"]}
