@@ -116,6 +116,7 @@ message NetworkDevice {
     required string primary_name = 1;
     optional HardwareDetails hardware = 2;
     optional SystemDetails system = 3;
+    optional string switch_type = 4;
 }
 
 message NetworkDeviceList {
