@@ -256,6 +256,7 @@ message Interface {
     optional int64 port_group_tag = 17;
     // This should be redundant...
     optional string port_group_name = 18;
+    optional bool default_route = 19;
 }
 
 enum Lifecycle {
