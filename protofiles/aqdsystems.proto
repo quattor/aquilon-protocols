@@ -356,6 +356,7 @@ message Resource {
     optional ResourceGroup resourcegroup = 10;
     repeated ClusterAutoStartEntry autostartlist = 11;
     repeated ClusterSystemEntry systemlist = 12;
+    optional SharedServiceName shared_service_name = 13;
 }
 
 message ResourceList {
@@ -515,4 +516,9 @@ message NetworkEnvironment {
 
 message NetworkEnvironmentList {
     repeated NetworkEnvironment network_environments = 1;
+}
+
+message SharedServiceName {
+    optional string fqdn = 1;
+    optional bool sa_aliases = 2;
 }
