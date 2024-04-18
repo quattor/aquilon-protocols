@@ -37,6 +37,7 @@ message Network {
     optional aqdsystems.NetworkEnvironment network_environment = 18;
     repeated aqdsystems.ServiceAddress service_addresses = 19;
     // Note: network_environment.name == env_name
+    repeated aqdsystems.StaticRoute static_routes = 20;
 }
 
 message NetworkList {
