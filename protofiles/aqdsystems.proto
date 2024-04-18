@@ -257,6 +257,7 @@ message Interface {
     // This should be redundant...
     optional string port_group_name = 18;
     optional bool default_route = 19;
+    repeated StaticRoute static_routes = 20;
 }
 
 enum Lifecycle {
@@ -521,4 +522,10 @@ message NetworkEnvironmentList {
 message SharedServiceName {
     optional string fqdn = 1;
     optional bool sa_aliases = 2;
+}
+
+message StaticRoute {
+    required string destination = 1;
+    required string gateway_ip = 2;
+    optional Personality personality = 3;
 }
