@@ -30,14 +30,15 @@ message Network {
     optional string type = 11;
     optional bool discoverable = 12 [deprecated=true];
     optional bool discovered = 13 [deprecated=true];
+    // Note: network_environment.name == env_name
     optional string env_name = 14;
     repeated DynamicRange dynamic_ranges = 15;
     repeated string routers = 16;
     optional string compartment = 17;
     optional aqdsystems.NetworkEnvironment network_environment = 18;
     repeated aqdsystems.ServiceAddress service_addresses = 19;
-    // Note: network_environment.name == env_name
     repeated aqdsystems.StaticRoute static_routes = 20;
+    repeated NetworkTag network_tags = 21;
 }
 
 message NetworkList {
@@ -51,4 +52,9 @@ message NetworkCompartment {
 
 message NetworkCompartmentList {
     repeated NetworkCompartment compartments = 1;
+}
+
+message NetworkTag {
+    optional string name = 1;
+    optional string value = 2;
 }
