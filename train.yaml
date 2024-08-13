@@ -2,7 +2,7 @@ train_version: 1.0
 
 tools:
   - perl5/core/5.20
-  - python/core/3.10.4
+  - python/core/3.10.11
   - msde/traincli/prod
   - msde/artifactory-eng-tools/prod
 
